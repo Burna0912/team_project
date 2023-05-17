@@ -64,3 +64,5 @@ while running:
     pygame.display.update()
 
 pygame.quit()
+
+# 원격 업로드 실험
