@@ -15,6 +15,10 @@ pygame.display.set_caption("BOO GAME")
 clock = pygame.time.Clock()
 
 # 배경(봄, 여름, 가을, 겨울) 설정
+background_spring = pygame.image.load("C:/Users/ranso/OneDrive/바탕 화면/team/team_project/images/background_spring.png") #봄 배경
+background_summer = pygame.image.load("C:/Users/ranso/OneDrive/바탕 화면/team/team_project/images/background_summer.png") #여름 배경
+background_autumn = pygame.image.load("C:/Users/ranso/OneDrive/바탕 화면/team/team_project/images/background_autumn.png") #가을 배경
+background_winter = pygame.image.load("C:/Users/ranso/OneDrive/바탕 화면/team/team_project/images/background_winter.png") #겨울 배경
 
 # 캐릭터(봄, 여름, 가을, 겨울) 설정
 
