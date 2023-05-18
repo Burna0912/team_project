@@ -1,6 +1,7 @@
 import pygame
 import random
 
+
 pygame.init()
 
 # 화면 크기 설정
@@ -69,6 +70,15 @@ while running:
     # 충돌 처리 (A+: 10점, B+: 7점, C+: 5점, D+: 3점, F: -5점)
     
     # 배경, 캐릭터 그리기 (봄, 여름, 가을, 겨울)
+    # 60초를 4분할하여 각 15초마다 봄, 여름, 가을, 겨울 순으로 배경이 바뀜
+    if (total_time-elapsed_time) >45:
+        screen.blit(background_spring,(0,0))
+    elif  (total_time-elapsed_time) >30:
+        screen.blit(background_summer,(0,0))
+    elif  (total_time-elapsed_time) >15:
+        screen.blit(background_autumn,(0,0))
+    elif  (total_time-elapsed_time) >0:
+        screen.blit(background_winter,(0,0))
         
     screen.blit(timer, (10, 10))
 
