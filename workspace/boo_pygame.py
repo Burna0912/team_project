@@ -64,7 +64,17 @@ while running:
             running = False
 
         # 키보드 입력 설정
-    
+        
+        if event.type == pygame.KEYDOWN: #키가 눌러졌는지 확인
+            if event.key == pygame.K_LEFT: #캐릭터를 왼쪽으로
+                to_x -= 1
+            elif event.key == pygame.K_RIGHT:
+                to_x += 1
+                
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                to_x = 0
+    BOO_x_position += to_x
     # 캐릭터 위치 정의 (좌, 우로만 움직이며 대쉬가 있음)
 
     # 학점 위치 정의 (A+, B+, C+, D+, F마다 다르게 설정) 
