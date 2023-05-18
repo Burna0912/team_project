@@ -27,7 +27,9 @@ BOO = pygame.image.load("C:/Users/ranso/team/team_project/images/BOO.png")
 #파일경로 수정, 캐릭터 이미지 수정 및 추가 요망 
 BOO_size = BOO.get_rect().size
 BOO_width = BOO_size[0] 
-BOO_width = BOO_size[1] 
+BOO_height = BOO_size[1] 
+BOO_x_position = screen_width/2-BOO_width/2 #화면 가로 크기의 절반에 해당하도록, 중앙에 놓이도록
+BOO_y_position = screen_height-BOO_height #화면 맨 아래에 캐릭터를 설치 
 
 
 # 학점(A+, B+, C+, D+, F) 설정
@@ -79,6 +81,8 @@ while running:
         screen.blit(background_autumn,(0,0))
     elif  (total_time-elapsed_time) >0:
         screen.blit(background_winter,(0,0))
+    #부 위치 설정    
+    screen.blit(BOO, (BOO_x_position,BOO_y_position))
         
     screen.blit(timer, (10, 10))
 
