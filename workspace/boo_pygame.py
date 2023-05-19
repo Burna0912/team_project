@@ -102,12 +102,9 @@ while running:
     elif (total_time-elapsed_time) >0:
         screen.blit(background_winter,(0,0))
     else:
-
         screen.blit(GameOver,(0,0)) #남은 시간이 0 이하일 경우 게임 오버 화면이 나오도록 했지만 작동하지 않는다. 왜지?
         #running = False
         #남은 시간이 0일 경우 게임이 종료되도록 했지만 작동하지 않는다. 
-        
-        running = False
 
     #부 위치 설정    
     screen.blit(BOO, (BOO_x_position,BOO_y_position))
