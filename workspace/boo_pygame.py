@@ -16,15 +16,15 @@ pygame.display.set_caption("BOO GAME")
 clock = pygame.time.Clock()
 
 # 배경(봄, 여름, 가을, 겨울) 설정
-background_spring = pygame.image.load("C:/Users/ranso/team/team_project/images/background_spring.png") #봄 배경
-background_summer = pygame.image.load("C:/Users/ranso/team/team_project/images/background_summer.png") #여름 배경
-background_autumn = pygame.image.load("C:/Users/ranso/team/team_project/images/background_autumn.png") #가을 배경
-background_winter = pygame.image.load("C:/Users/ranso/team/team_project/images/background_winter.png") #겨울 배경
-GameOver = pygame.image.load("C:/Users/ranso/team/team_project/images/background_winter.png") #게임 오버
+background_spring = pygame.image.load("C:/Users/ranso/team/team_project/resource/images/background_spring.png") #봄 배경
+background_summer = pygame.image.load("C:/Users/ranso/team/team_project/resource/images/background_summer.png") #여름 배경
+background_autumn = pygame.image.load("C:/Users/ranso/team/team_project/resource/images/background_autumn.png") #가을 배경
+background_winter = pygame.image.load("C:/Users/ranso/team/team_project/resource/images/background_winter.png") #겨울 배경
+GameOver = pygame.image.load("C:/Users/ranso/team/resource/images/GameOver.png") #게임 오버
 #파일경로 수정, 배경이미지 수정 요망
 
 # 캐릭터(봄, 여름, 가을, 겨울) 설정
-BOO = pygame.image.load("C:/Users/ranso/team/team_project/images/BOO.png")
+BOO = pygame.image.load("C:/Users/ranso/team/resource/images/BOO.png")
 #파일경로 수정, 캐릭터 이미지 수정 및 추가 요망 
 BOO_size = BOO.get_rect().size
 BOO_width = BOO_size[0] 
@@ -46,7 +46,7 @@ to_x, to_y = 0, 0
 game_font = pygame.font.Font(None, 40)
 
 # 총 시간
-total_time = 4
+total_time = 60
 
 # 시작 시간
 start_ticks = pygame.time.get_ticks()
