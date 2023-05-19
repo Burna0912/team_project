@@ -91,6 +91,8 @@ while running:
 
     # 충돌 처리 (A+: 10점, B+: 7점, C+: 5점, D+: 3점, F: -5점)
     
+    
+
     # 배경, 캐릭터 그리기 (봄, 여름, 가을, 겨울)
     # 60초를 4분할하여 각 15초마다 봄, 여름, 가을, 겨울 순으로 배경이 바뀜
     if (total_time-elapsed_time) >45:
@@ -103,13 +105,19 @@ while running:
         screen.blit(background_winter,(0,0))
     else:
         screen.blit(GameOver,(0,0)) #남은 시간이 0 이하일 경우 게임 오버 화면이 나오도록 했지만 작동하지 않는다. 왜지?
+        
         #running = False
         #남은 시간이 0일 경우 게임이 종료되도록 했지만 작동하지 않는다. 
+
+    if(total_time-elapsed_time > 0): #게임이 종료되면 타이머가 안보이도록 설정
+        screen.blit(timer, (10, 10))
+    else:
+        screen.blit(timer, (-100, -100))
 
     #부 위치 설정    
     screen.blit(BOO, (BOO_x_position,BOO_y_position))
         
-    screen.blit(timer, (10, 10))
+    
 
     pygame.display.update()
 
