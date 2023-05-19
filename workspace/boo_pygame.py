@@ -21,7 +21,7 @@ background_spring = pygame.image.load("./../resource/images/background_spring.pn
 background_summer = pygame.image.load("./../resource/images/background_summer.png") #여름 배경
 background_autumn = pygame.image.load("./../resource/images/background_autumn.png") #가을 배경
 background_winter = pygame.image.load("./../resource/images/background_winter.png") #겨울 배경
-GameOver = pygame.image.load("./../resource/images/GameOver.png") #게임 오버  왜 경로 인식이 안되는지 모르겠음
+GameOver = pygame.image.load("./../resource/images/game_over.png") #게임 오버  왜 경로 인식이 안되는지 모르겠음
 #파일경로 수정, 배경이미지 수정 요망
 
 # 캐릭터(봄, 여름, 가을, 겨울) 설정
