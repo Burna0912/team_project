@@ -20,6 +20,7 @@ background_spring = pygame.image.load("C:/Users/ranso/team/team_project/images/b
 background_summer = pygame.image.load("C:/Users/ranso/team/team_project/images/background_summer.png") #여름 배경
 background_autumn = pygame.image.load("C:/Users/ranso/team/team_project/images/background_autumn.png") #가을 배경
 background_winter = pygame.image.load("C:/Users/ranso/team/team_project/images/background_winter.png") #겨울 배경
+GameOver = pygame.image.load("C:/Users/ranso/team/team_project/images/background_winter.png") #게임 오버
 #파일경로 수정, 배경이미지 수정 요망
 
 # 캐릭터(봄, 여름, 가을, 겨울) 설정
@@ -45,7 +46,7 @@ to_x, to_y = 0, 0
 game_font = pygame.font.Font(None, 40)
 
 # 총 시간
-total_time = 60
+total_time = 4
 
 # 시작 시간
 start_ticks = pygame.time.get_ticks()
@@ -74,6 +75,8 @@ while running:
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                 to_x = 0
+                
+    # 부가 화면 밖으로 넘어가지 않도록 조치          
     if BOO_x_position < 0:
         BOO_x_position = 0
     elif BOO_x_position > screen_width-BOO_width:
@@ -96,8 +99,11 @@ while running:
         screen.blit(background_autumn,(0,0))
     elif  (total_time-elapsed_time) >0:
         screen.blit(background_winter,(0,0))
-    elif (total_time-elapsed_time) ==0:
-        running = False
+    else:
+        screen.blit(GameOver,(0,0)) #남은 시간이 0 이하일 경우 게임 오버 화면이 나오도록 했지만 작동하지 않는다. 왜지?
+        #running = False
+        #남은 시간이 0일 경우 게임이 종료되도록 했지만 작동하지 않는다. 
+        
     #부 위치 설정    
     screen.blit(BOO, (BOO_x_position,BOO_y_position))
         
