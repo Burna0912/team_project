@@ -67,13 +67,18 @@ while running:
         
         if event.type == pygame.KEYDOWN: #키가 눌러졌는지 확인
             if event.key == pygame.K_LEFT: #캐릭터를 왼쪽으로
-                to_x -= 1
+                to_x -= 5
             elif event.key == pygame.K_RIGHT:
-                to_x += 1
+                to_x += 5
                 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                 to_x = 0
+    if BOO_x_position < 0:
+        BOO_x_position = 0
+    elif BOO_x_position > screen_width-BOO_width:
+        BOO_x_position =screen_width-BOO_width 
+        
     BOO_x_position += to_x
     # 캐릭터 위치 정의 (좌, 우로만 움직이며 대쉬가 있음)
 
@@ -91,6 +96,8 @@ while running:
         screen.blit(background_autumn,(0,0))
     elif  (total_time-elapsed_time) >0:
         screen.blit(background_winter,(0,0))
+    elif (total_time-elapsed_time) ==0:
+        running = False
     #부 위치 설정    
     screen.blit(BOO, (BOO_x_position,BOO_y_position))
         
