@@ -48,7 +48,7 @@ to_x, to_y = 0, 0
 game_font = pygame.font.Font(None, 40)
 
 # 총 시간
-total_time = 60
+total_time = 5
 
 # 시작 시간
 start_ticks = pygame.time.get_ticks()
@@ -102,7 +102,7 @@ while running:
     elif (total_time-elapsed_time) >0:
         screen.blit(background_winter,(0,0))
     else:
-
+        BOO_x_position = 10000
         screen.blit(GameOver,(0,0)) #남은 시간이 0 이하일 경우 게임 오버 화면이 나오도록 했지만 작동하지 않는다. 왜지?
         #running = False
         #남은 시간이 0일 경우 게임이 종료되도록 했지만 작동하지 않는다. 
