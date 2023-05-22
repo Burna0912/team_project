@@ -17,9 +17,15 @@ clock = pygame.time.Clock()
 
 # 배경(봄, 여름, 가을, 겨울) 설정
 
+<<<<<<< HEAD
 background_1 = pygame.image.load("./../../resource/images/BACK1.png") #1학기 배경
 background_2 = pygame.image.load("./../../resource/images/BACK2.png") #2학기 배경
 GameOver = pygame.image.load("./../resource/images/game_over.png") #게임 오버 
+=======
+background_1 = pygame.image.load("./../resource/images/BACK1.png") #1학기 배경
+background_2 = pygame.image.load("./../resource/images/BACK2.png") #2학기 배경
+GameOver = pygame.image.load("./../resource/images/game_over.png") #게임 오버  
+>>>>>>> fc5abf0caded13c28215bddb92ace0d95efece4c
 #파일경로 수정, 배경이미지 수정 요망
 
 # 캐릭터(봄, 여름, 가을, 겨울) 설정
@@ -89,24 +95,40 @@ while running:
 
     # 충돌 처리 (A+: 10점, B+: 7점, C+: 5점, D+: 3점, F: -5점)
     
+    
+
     # 배경, 캐릭터 그리기 (봄, 여름, 가을, 겨울)
     # 60초를 4분할하여 각 15초마다 봄, 여름, 가을, 겨울 순으로 배경이 바뀜
+<<<<<<< HEAD
+=======
+    
+>>>>>>> fc5abf0caded13c28215bddb92ace0d95efece4c
     if (total_time-elapsed_time) >30:
         screen.blit(background_1,(0,0))
     elif (total_time-elapsed_time) >0:
         screen.blit(background_2,(0,0))
     else:
+<<<<<<< HEAD
         BOO_x_position = 10000
         screen.blit(GameOver,(0,0)) #남은 시간이 0 이하일 경우 게임 오버 화면이 나오도록 했지만 작동하지 않는다. 왜지?
         #running = False
         #남은 시간이 0일 경우 게임이 종료되도록 했지만 작동하지 않는다. 
         
         #running = False
+=======
+        screen.blit(GameOver,(0,0)) 
+       
+    if(total_time-elapsed_time > 0): #게임이 종료되면 타이머가 안보이도록 설정
+        screen.blit(timer, (10, 10))
+    else:
+        screen.blit(timer, (-100, -100))
+        BOO_y_position = 100000
+>>>>>>> fc5abf0caded13c28215bddb92ace0d95efece4c
 
     #부 위치 설정    
     screen.blit(BOO, (BOO_x_position,BOO_y_position))
         
-    screen.blit(timer, (10, 10))
+    
 
     pygame.display.update()
 
