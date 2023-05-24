@@ -1,6 +1,8 @@
 import pygame
 import random
 
+#branch : test
+
 pygame.init()
 
 # 화면 크기 설정
@@ -23,7 +25,6 @@ BOO_pink = pygame.image.load("./../resource/images/BOO_pink.png") #핑크색 부
 BOO_brown = pygame.image.load("./../resource/images/BOO_brown.png") #갈색 부
 BOO_sky = pygame.image.load("./../resource/images/BOO_sky.png") #하늘색 부
 
-#파일경로 수정, 캐릭터 이미지 수정 및 추가 요망 
 BOO_size = BOO.get_rect().size
 BOO_width = BOO_size[0] 
 BOO_height = BOO_size[1] 
@@ -100,7 +101,7 @@ while running:
     else:                           #시간이 끝났을 경우 좌포 -100,-100에 타이머룰 출력해 화면에 보이지 않게 함
         screen.blit(timer, (-100, -100))
    
-    screen.blit(BOO, (BOO_x_position,BOO_y_position)) #부를 화면에 출력 
+    screen.blit(BOO_brown, (BOO_x_position,BOO_y_position)) #부를 화면에 출력 
         
     
 
