@@ -1,6 +1,7 @@
 import pygame
 import random
 
+#branch : test
 
 pygame.init()
 
@@ -15,19 +16,15 @@ pygame.display.set_caption("BOO GAME")
 # FPS
 clock = pygame.time.Clock()
 
-# 배경(봄, 여름, 가을, 겨울) 설정
+background_1 = pygame.image.load("./../resource/images/BACK1.png") #1학기 배경
+background_2 = pygame.image.load("./../resource/images/BACK2.png") #2학기 배경
+GameOver = pygame.image.load("./../resource/images/game_over.png") #게임 오버  
 
-background_spring = pygame.image.load("./../resource/images/background_spring.png") #봄 배경
-background_summer = pygame.image.load("./../resource/images/background_summer.png") #여름 배경
-background_autumn = pygame.image.load("./../resource/images/background_autumn.png") #가을 배경
-background_winter = pygame.image.load("./../resource/images/background_winter.png") #겨울 배경
-GameOver = pygame.image.load("./../resource/images/game_over.png") #게임 오버  왜 경로 인식이 안되는지 모르겠음
-#파일경로 수정, 배경이미지 수정 요망
+BOO = pygame.image.load("./../resource/images/BOO.png") # 기본 부
+BOO_pink = pygame.image.load("./../resource/images/BOO_pink.png") #핑크색 부
+BOO_brown = pygame.image.load("./../resource/images/BOO_brown.png") #갈색 부
+BOO_sky = pygame.image.load("./../resource/images/BOO_sky.png") #하늘색 부
 
-# 캐릭터(봄, 여름, 가을, 겨울) 설정
-BOO = pygame.image.load("./../resource/images/BOO.png")
-
-#파일경로 수정, 캐릭터 이미지 수정 및 추가 요망 
 BOO_size = BOO.get_rect().size
 BOO_width = BOO_size[0] 
 BOO_height = BOO_size[1] 
@@ -65,11 +62,10 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
-        # 키보드 입력 설정
-        
-        if event.type == pygame.KEYDOWN: #키가 눌러졌는지 확인
-            if event.key == pygame.K_LEFT: #캐릭터를 왼쪽으로
+            
+        # 키보드 입력 설정 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
                 to_x -= 5
             elif event.key == pygame.K_RIGHT:
                 to_x += 5
@@ -91,31 +87,21 @@ while running:
 
     # 충돌 처리 (A+: 10점, B+: 7점, C+: 5점, D+: 3점, F: -5점)
     
-    
 
-    # 배경, 캐릭터 그리기 (봄, 여름, 가을, 겨울)
-    # 60초를 4분할하여 각 15초마다 봄, 여름, 가을, 겨울 순으로 배경이 바뀜
-    if (total_time-elapsed_time) >45:
-        screen.blit(background_spring,(0,0))
-    elif (total_time-elapsed_time) >30:
-        screen.blit(background_summer,(0,0))
-    elif (total_time-elapsed_time) >15:
-        screen.blit(background_autumn,(0,0))
-    elif (total_time-elapsed_time) >0:
-        screen.blit(background_winter,(0,0))
+    if (total_time-elapsed_time) >30: #시간이 30초 이상 남았을 때 1학기 배경화면 출력 
+        screen.blit(background_1,(0,0))
+    elif (total_time-elapsed_time) >0: #시간이 30초 이하 남았을 때 2학기 배경화면 출력 
+        screen.blit(background_2,(0,0))
     else:
-        screen.blit(GameOver,(0,0)) #남은 시간이 0 이하일 경우 게임 오버 화면이 나오도록 했지만 작동하지 않는다. 왜지?
+        BOO_x_position = 10000 #남은 시간이 0 일 때 부를 화면에 뜨지 않도록 처리 
+        screen.blit(GameOver,(0,0)) #남은 시간이 0 일 때 게임오버 화면 출력 
         
-        #running = False
-        #남은 시간이 0일 경우 게임이 종료되도록 했지만 작동하지 않는다. 
-
-    if(total_time-elapsed_time > 0): #게임이 종료되면 타이머가 안보이도록 설정
+    if(total_time-elapsed_time > 0): #시간이 남았을 경우 10,10 좌표에 타이며 출력
         screen.blit(timer, (10, 10))
-    else:
+    else:                           #시간이 끝났을 경우 좌포 -100,-100에 타이머룰 출력해 화면에 보이지 않게 함
         screen.blit(timer, (-100, -100))
-
-    #부 위치 설정    
-    screen.blit(BOO, (BOO_x_position,BOO_y_position))
+   
+    screen.blit(BOO_brown, (BOO_x_position,BOO_y_position)) #부를 화면에 출력 
         
     
 
