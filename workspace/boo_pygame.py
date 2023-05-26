@@ -28,12 +28,14 @@ BOO_sky = pygame.image.load("./../resource/images/BOO_sky.png") #하늘색 부
 BOO_size = BOO.get_rect().size
 BOO_width = BOO_size[0] 
 BOO_height = BOO_size[1] 
-BOO_x_position = screen_width/2-BOO_width/2 #화면 가로 크기의 절반에 해당하도록, 중앙에 놓이도록
-BOO_y_position = screen_height-BOO_height #화면 맨 아래에 캐릭터를 설치 
+BOO_x_pos = screen_width/2-BOO_width/2 #화면 가로 크기의 절반에 해당하도록, 중앙에 놓이도록
+BOO_y_pos = screen_height-BOO_height #화면 맨 아래에 캐릭터를 설치 
 BOO_speed = 0.3
 
 
 # 학점(A+, B+, C+, D+, F) 설정
+score = 0
+
 A = pygame.image.load("./../resource/images/scores/autumn_A.png")
 A_size = A.get_rect().size # 이미지의 크기를 구해옴
 A_width = A_size[0] # 캐릭터의 가로 크기
@@ -97,6 +99,7 @@ while running:
     elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000
 
     timer = game_font.render(str(int(total_time - elapsed_time)), True, (255, 255, 255))
+    get_point = game_font.render(str(int(score)), True, (255, 255, 255))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -114,12 +117,12 @@ while running:
                 to_x = 0
                 
     # 부가 화면 밖으로 넘어가지 않도록 조치          
-    if BOO_x_position < 0:
-        BOO_x_position = 0
-    elif BOO_x_position > screen_width-BOO_width:
-        BOO_x_position =screen_width-BOO_width 
+    if BOO_x_pos < 0:
+        BOO_x_pos = 0
+    elif BOO_x_pos > screen_width-BOO_width:
+        BOO_x_pos =screen_width-BOO_width 
     
-    BOO_x_position += to_x * dt
+    BOO_x_pos += to_x * dt
 
     # 캐릭터 위치 정의 (좌, 우로만 움직이며 대쉬가 있음)
     A_y_pos += A_speed * dt
@@ -151,23 +154,65 @@ while running:
     # 학점 위치 정의 (A+, B+, C+, D+, F마다 다르게 설정) 
 
     # 충돌 처리 (A+: 10점, B+: 7점, C+: 5점, D+: 3점, F: -5점)
+    BOO_rect = BOO.get_rect()
+    BOO_rect.left = BOO_x_pos
+    BOO_rect.top = BOO_y_pos
+
+    A_rect = A.get_rect()
+    A_rect.left = A_x_pos
+    A_rect.top = A_y_pos
+
+    B_rect = B.get_rect()
+    B_rect.left = B_x_pos
+    B_rect.top = B_y_pos
+
+    C_rect = C.get_rect()
+    C_rect.left = C_x_pos
+    C_rect.top = C_y_pos
+
+    D_rect = D.get_rect()
+    D_rect.left = D_x_pos
+    D_rect.top = D_y_pos
+
+    F_rect = F.get_rect()
+    F_rect.left = F_x_pos
+    F_rect.top = F_y_pos
+
+    if BOO_rect.colliderect(A_rect):
+        score += 10
+        A_y_pos = random.randint(-1000, 0)
+    elif BOO_rect.colliderect(B_rect):
+        score += 7
+        B_y_pos = random.randint(-500, 0)
+    elif BOO_rect.colliderect(C_rect):
+        score += 5
+        C_y_pos = random.randint(-250, 0)
+    elif BOO_rect.colliderect(D_rect):
+        score += 3
+        D_y_pos = random.randint(-125, 0)
+    elif BOO_rect.colliderect(F_rect):
+        score -= 5
+        F_y_pos = 0
+
+    
     
 
     if (total_time-elapsed_time) >30: #시간이 30초 이상 남았을 때 1학기 배경화면 출력 
         screen.blit(background_1,(0,0))
+        screen.blit(timer, (10, 10))
+        screen.blit(get_point, (screen_width-50, 10))
     elif (total_time-elapsed_time) >0: #시간이 30초 이하 남았을 때 2학기 배경화면 출력 
         screen.blit(background_2,(0,0))
+        screen.blit(timer, (10, 10))
+        screen.blit(get_point, (screen_width-50, 10))
     else:
-        BOO_x_position = 10000 #남은 시간이 0 일 때 부를 화면에 뜨지 않도록 처리 
+        BOO_x_pos = 10000 #남은 시간이 0 일 때 부를 화면에 뜨지 않도록 처리 
         A_x_pos, B_x_pos, C_x_pos, D_x_pos, F_x_pos = 10000, 10000, 10000, 10000, 10000
         screen.blit(GameOver,(0,0)) #남은 시간이 0 일 때 게임오버 화면 출력 
-        
-    if(total_time-elapsed_time > 0): #시간이 남았을 경우 10,10 좌표에 타이며 출력
-        screen.blit(timer, (10, 10))
-    else:                           #시간이 끝났을 경우 좌포 -100,-100에 타이머룰 출력해 화면에 보이지 않게 함
         screen.blit(timer, (-100, -100))
+        
    
-    screen.blit(BOO_brown, (BOO_x_position,BOO_y_position)) #부를 화면에 출력 
+    screen.blit(BOO_brown, (BOO_x_pos,BOO_y_pos)) #부를 화면에 출력 
     screen.blit(A, (A_x_pos, A_y_pos))
     screen.blit(B, (B_x_pos, B_y_pos))
     screen.blit(C, (C_x_pos, C_y_pos))
