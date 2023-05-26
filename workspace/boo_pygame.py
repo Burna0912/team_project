@@ -30,15 +30,22 @@ BOO_width = BOO_size[0]
 BOO_height = BOO_size[1] 
 BOO_x_position = screen_width/2-BOO_width/2 #화면 가로 크기의 절반에 해당하도록, 중앙에 놓이도록
 BOO_y_position = screen_height-BOO_height #화면 맨 아래에 캐릭터를 설치 
+BOO_speed = 0.4
 
 
 # 학점(A+, B+, C+, D+, F) 설정
+A = pygame.image.load("./../resource/images/scores/autumn_A.png")
+A_size = A.get_rect().size # 이미지의 크기를 구해옴
+A_width = A_size[0] # 캐릭터의 가로 크기
+A_height = A_size[1] # 캐릭터의 세로 크기
+A_x_pos = random.randint(0, screen_width - A_width)
+A_y_pos = random.randint(-100, 0)
+A_speed = 10
 
 # 이동 좌표 설정
 to_x, to_y = 0, 0
 
 # 이동 속도 설정 (캐릭터, A+, B+, C+, D+, F, 대쉬)
-
 
 
 # 폰트 정의
@@ -66,9 +73,9 @@ while running:
         # 키보드 입력 설정 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                to_x -= 5
+                to_x -= BOO_speed
             elif event.key == pygame.K_RIGHT:
-                to_x += 5
+                to_x += BOO_speed
                 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -79,9 +86,15 @@ while running:
         BOO_x_position = 0
     elif BOO_x_position > screen_width-BOO_width:
         BOO_x_position =screen_width-BOO_width 
-        
-    BOO_x_position += to_x
+    
+    BOO_x_position += to_x * dt
+
     # 캐릭터 위치 정의 (좌, 우로만 움직이며 대쉬가 있음)
+    A_y_pos += A_speed
+    if A_y_pos > screen_height:
+        A_y_pos = random.randint(-10000, 0)
+        A_x_pos = random.randint(0, screen_width - A_width)
+
 
     # 학점 위치 정의 (A+, B+, C+, D+, F마다 다르게 설정) 
 
@@ -102,6 +115,7 @@ while running:
         screen.blit(timer, (-100, -100))
    
     screen.blit(BOO_brown, (BOO_x_position,BOO_y_position)) #부를 화면에 출력 
+    screen.blit(A, (A_x_pos, A_y_pos))
         
     
 
