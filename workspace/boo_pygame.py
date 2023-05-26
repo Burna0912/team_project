@@ -159,6 +159,7 @@ while running:
         screen.blit(background_2,(0,0))
     else:
         BOO_x_position = 10000 #남은 시간이 0 일 때 부를 화면에 뜨지 않도록 처리 
+        A_x_pos, B_x_pos, C_x_pos, D_x_pos, F_x_pos = 10000, 10000, 10000, 10000, 10000
         screen.blit(GameOver,(0,0)) #남은 시간이 0 일 때 게임오버 화면 출력 
         
     if(total_time-elapsed_time > 0): #시간이 남았을 경우 10,10 좌표에 타이며 출력
