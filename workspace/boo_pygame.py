@@ -30,7 +30,7 @@ BOO_width = BOO_size[0]
 BOO_height = BOO_size[1] 
 BOO_x_pos = screen_width/2-BOO_width/2 #화면 가로 크기의 절반에 해당하도록, 중앙에 놓이도록
 BOO_y_pos = screen_height-BOO_height #화면 맨 아래에 캐릭터를 설치 
-BOO_speed = 0.3
+BOO_speed = 0.25
 
 
 # 학점(A+, B+, C+, D+, F) 설정
@@ -42,7 +42,7 @@ A_width = A_size[0] # 캐릭터의 가로 크기
 A_height = A_size[1] # 캐릭터의 세로 크기
 A_x_pos = random.randint(0, screen_width - A_width)
 A_y_pos = random.randint(-1000, 0)
-A_speed = 0.5
+A_speed = 0.25
 
 B = pygame.image.load("./../resource/images/scores/spring_A.png")
 B_size = B.get_rect().size # 이미지의 크기를 구해옴
@@ -50,7 +50,7 @@ B_width = B_size[0] # 캐릭터의 가로 크기
 B_height = B_size[1] # 캐릭터의 세로 크기
 B_x_pos = random.randint(0, screen_width - B_width)
 B_y_pos = random.randint(-500, 0)
-B_speed = 0.43
+B_speed = 0.32
 
 C = pygame.image.load("./../resource/images/scores/spring_B.png")
 C_size = C.get_rect().size # 이미지의 크기를 구해옴
@@ -66,7 +66,7 @@ D_width = D_size[0] # 캐릭터의 가로 크기
 D_height = D_size[1] # 캐릭터의 세로 크기
 D_x_pos = random.randint(0, screen_width - D_width)
 D_y_pos = random.randint(-120, 0)
-D_speed = 0.32
+D_speed = 0.43
 
 F = pygame.image.load("./../resource/images/scores/winter_A.png")
 F_size = F.get_rect().size # 이미지의 크기를 구해옴
@@ -74,7 +74,9 @@ F_width = F_size[0] # 캐릭터의 가로 크기
 F_height = F_size[1] # 캐릭터의 세로 크기
 F_x_pos = random.randint(0, screen_width - F_width)
 F_y_pos = 0
-F_speed = 0.25
+F_speed = 0.6
+
+
 
 # 이동 좌표 설정
 to_x, to_y = 0, 0
@@ -209,17 +211,14 @@ while running:
         BOO_x_pos = 10000 #남은 시간이 0 일 때 부를 화면에 뜨지 않도록 처리 
         A_x_pos, B_x_pos, C_x_pos, D_x_pos, F_x_pos = 10000, 10000, 10000, 10000, 10000
         screen.blit(GameOver,(0,0)) #남은 시간이 0 일 때 게임오버 화면 출력 
-        screen.blit(timer, (-100, -100))
-        
-   
+
+
     screen.blit(BOO_brown, (BOO_x_pos,BOO_y_pos)) #부를 화면에 출력 
     screen.blit(A, (A_x_pos, A_y_pos))
     screen.blit(B, (B_x_pos, B_y_pos))
     screen.blit(C, (C_x_pos, C_y_pos))
     screen.blit(D, (D_x_pos, D_y_pos))
     screen.blit(F, (F_x_pos, F_y_pos))
-        
-    
 
     pygame.display.update()
 
