@@ -30,7 +30,7 @@ BOO_width = BOO_size[0]
 BOO_height = BOO_size[1] 
 BOO_x_position = screen_width/2-BOO_width/2 #화면 가로 크기의 절반에 해당하도록, 중앙에 놓이도록
 BOO_y_position = screen_height-BOO_height #화면 맨 아래에 캐릭터를 설치 
-BOO_speed = 0.4
+BOO_speed = 0.3
 
 
 # 학점(A+, B+, C+, D+, F) 설정
@@ -39,8 +39,8 @@ A_size = A.get_rect().size # 이미지의 크기를 구해옴
 A_width = A_size[0] # 캐릭터의 가로 크기
 A_height = A_size[1] # 캐릭터의 세로 크기
 A_x_pos = random.randint(0, screen_width - A_width)
-A_y_pos = random.randint(-100, 0)
-A_speed = 10
+A_y_pos = random.randint(-1000, 0)
+A_speed = 0.5
 
 # 이동 좌표 설정
 to_x, to_y = 0, 0
@@ -90,9 +90,9 @@ while running:
     BOO_x_position += to_x * dt
 
     # 캐릭터 위치 정의 (좌, 우로만 움직이며 대쉬가 있음)
-    A_y_pos += A_speed
+    A_y_pos += A_speed * dt
     if A_y_pos > screen_height:
-        A_y_pos = random.randint(-10000, 0)
+        A_y_pos = random.randint(-1000, 0)
         A_x_pos = random.randint(0, screen_width - A_width)
 
 
