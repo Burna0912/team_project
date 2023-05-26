@@ -42,6 +42,38 @@ A_x_pos = random.randint(0, screen_width - A_width)
 A_y_pos = random.randint(-1000, 0)
 A_speed = 0.5
 
+B = pygame.image.load("./../resource/images/scores/spring_A.png")
+B_size = B.get_rect().size # 이미지의 크기를 구해옴
+B_width = B_size[0] # 캐릭터의 가로 크기
+B_height = B_size[1] # 캐릭터의 세로 크기
+B_x_pos = random.randint(0, screen_width - B_width)
+B_y_pos = random.randint(-500, 0)
+B_speed = 0.43
+
+C = pygame.image.load("./../resource/images/scores/spring_B.png")
+C_size = C.get_rect().size # 이미지의 크기를 구해옴
+C_width = C_size[0] # 캐릭터의 가로 크기
+C_height = C_size[1] # 캐릭터의 세로 크기
+C_x_pos = random.randint(0, screen_width - C_width)
+C_y_pos = random.randint(-250, 0)
+C_speed = 0.37
+
+D = pygame.image.load("./../resource/images/scores/summer_A.png")
+D_size = D.get_rect().size # 이미지의 크기를 구해옴
+D_width = D_size[0] # 캐릭터의 가로 크기
+D_height = D_size[1] # 캐릭터의 세로 크기
+D_x_pos = random.randint(0, screen_width - D_width)
+D_y_pos = random.randint(-120, 0)
+D_speed = 0.32
+
+F = pygame.image.load("./../resource/images/scores/winter_A.png")
+F_size = F.get_rect().size # 이미지의 크기를 구해옴
+F_width = F_size[0] # 캐릭터의 가로 크기
+F_height = F_size[1] # 캐릭터의 세로 크기
+F_x_pos = random.randint(0, screen_width - F_width)
+F_y_pos = 0
+F_speed = 0.25
+
 # 이동 좌표 설정
 to_x, to_y = 0, 0
 
@@ -95,6 +127,26 @@ while running:
         A_y_pos = random.randint(-1000, 0)
         A_x_pos = random.randint(0, screen_width - A_width)
 
+    B_y_pos += B_speed * dt
+    if B_y_pos > screen_height:
+        B_y_pos = random.randint(-500, 0)
+        B_x_pos = random.randint(0, screen_width - B_width)
+    
+    C_y_pos += C_speed * dt
+    if C_y_pos > screen_height:
+        C_y_pos = random.randint(-250, 0)
+        C_x_pos = random.randint(0, screen_width - C_width)
+    
+    D_y_pos += D_speed * dt
+    if D_y_pos > screen_height:
+        D_y_pos = random.randint(-125, 0)
+        D_x_pos = random.randint(0, screen_width - D_width)
+
+    F_y_pos += F_speed * dt
+    if F_y_pos > screen_height:
+        F_y_pos = 0
+        F_x_pos = random.randint(0, screen_width - F_width)
+
 
     # 학점 위치 정의 (A+, B+, C+, D+, F마다 다르게 설정) 
 
@@ -116,6 +168,10 @@ while running:
    
     screen.blit(BOO_brown, (BOO_x_position,BOO_y_position)) #부를 화면에 출력 
     screen.blit(A, (A_x_pos, A_y_pos))
+    screen.blit(B, (B_x_pos, B_y_pos))
+    screen.blit(C, (C_x_pos, C_y_pos))
+    screen.blit(D, (D_x_pos, D_y_pos))
+    screen.blit(F, (F_x_pos, F_y_pos))
         
     
 
