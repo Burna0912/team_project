@@ -93,7 +93,7 @@ total_time = 60
 
 # 시작 시간
 start_ticks = pygame.time.get_ticks()
-boo_speed = 1
+boo_speed = 0.4 # 부 이동 속도 설정
 
 running = True 
 while running:
