@@ -1,3 +1,4 @@
+
 import pygame
 import random
 
@@ -90,7 +91,7 @@ total_time = 60
 
 # 시작 시간
 start_ticks = pygame.time.get_ticks()
-boo_speed = 5
+boo_speed = 1
 
 running = True 
 while running:
@@ -109,15 +110,10 @@ while running:
         # 키보드 입력 설정 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-<<<<<<< Updated upstream
-                to_x -= BOO_speed
-            elif event.key == pygame.K_RIGHT:
-                to_x += BOO_speed
-=======
                 to_x -= boo_speed
             elif event.key == pygame.K_RIGHT:
                 to_x += boo_speed
->>>>>>> Stashed changes
+
                 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
