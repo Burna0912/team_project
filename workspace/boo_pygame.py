@@ -21,10 +21,10 @@ background_1 = pygame.image.load("./../resource/images/BACK1.png") #1학기 배�
 background_2 = pygame.image.load("./../resource/images/BACK2.png") #2학기 배경
 GameOver = pygame.image.load("./../resource/images/game_over.png") #게임 오버  
 
-BOO = pygame.image.load("./../resource/images/brown_right_1.png") # 기본 부
-#BOO_pink = pygame.image.load("./../resource/images/BOO_pink.png") #핑크색 부
-#BOO_brown = pygame.image.load("./../resource/images/BOO_brown.png") #갈색 부
-#BOO_sky = pygame.image.load("./../resource/images/BOO_sky.png") #하늘색 부
+BOO = pygame.image.load("./../resource/images/BOO.png") # 기본 부
+BOO_pink = pygame.image.load("./../resource/images/BOO_pink.png") #핑크색 부
+BOO_brown = pygame.image.load("./../resource/images/BOO_brown.png") #갈색 부
+BOO_sky = pygame.image.load("./../resource/images/BOO_sky.png") #하늘색 부
 
 BOO_size = BOO.get_rect().size
 BOO_width = BOO_size[0] 
@@ -89,7 +89,7 @@ to_x, to_y = 0, 0
 game_font = pygame.font.Font(None, 40)
 
 # 총 시간
-total_time = 60
+total_time = 5
 
 # 시작 시간
 start_ticks = pygame.time.get_ticks()
@@ -216,7 +216,7 @@ while running:
         screen.blit(GameOver,(0,0)) #남은 시간이 0 일 때 게임오버 화면 출력 
         screen.blit(get_point, (screen_width/2, screen_height/2))
 
-    screen.blit(BOO, (BOO_x_pos,BOO_y_pos)) #부를 화면에 출력 
+    screen.blit(BOO_brown, (BOO_x_pos,BOO_y_pos)) #부를 화면에 출력 
     screen.blit(A, (A_x_pos, A_y_pos))
     screen.blit(B, (B_x_pos, B_y_pos))
     screen.blit(C, (C_x_pos, C_y_pos))
