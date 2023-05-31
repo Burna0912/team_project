@@ -75,7 +75,7 @@ F_width = F_size[0] # 캐릭터의 가로 크기
 F_height = F_size[1] # 캐릭터의 세로 크기
 F_x_pos = random.randint(0, screen_width - F_width)
 F_y_pos = 0
-F_speed = 0.6
+F_speed = 0.66
 
 
 
@@ -214,7 +214,7 @@ while running:
         BOO_x_pos = 10000 #남은 시간이 0 일 때 부를 화면에 뜨지 않도록 처리 
         A_x_pos, B_x_pos, C_x_pos, D_x_pos, F_x_pos = 10000, 10000, 10000, 10000, 10000
         screen.blit(GameOver,(0,0)) #남은 시간이 0 일 때 게임오버 화면 출력 
-
+        screen.blit(get_point, (screen_width/2, screen_height/2))
 
     screen.blit(BOO_brown, (BOO_x_pos,BOO_y_pos)) #부를 화면에 출력 
     screen.blit(A, (A_x_pos, A_y_pos))
