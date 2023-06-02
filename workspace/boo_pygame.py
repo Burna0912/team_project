@@ -1,9 +1,28 @@
 import pygame
 import random
 
-#branch : test
+def game_start():
+    keyC = False
+    GameStart_screen = pygame.image.load("./../resource/images/game_over.png")
+    screen.blit(GameStart_screen,(0,0))
+
+    pygame.display.update()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_c:
+                keyC = True
+        elif event.type == pygame.KEYUP:
+            if event.key == pygame.K_c:
+                keyC = False
+    if keyC:
+        return
 
 pygame.init()
+
 
 # 화면 크기 설정
 screen_width = 1000 # 가로 크기
@@ -102,6 +121,8 @@ while running:
 
     timer = game_font.render(str(int(total_time - elapsed_time)), True, (255, 255, 255))
     get_point = game_font.render(str(int(score)), True, (255, 255, 255))
+
+    game_start()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
