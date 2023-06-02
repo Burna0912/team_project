@@ -2,24 +2,19 @@ import pygame
 import random
 
 def game_start():
-    keyC = False
+    keyC = True
     GameStart_screen = pygame.image.load("./../resource/images/game_over.png")
     screen.blit(GameStart_screen,(0,0))
 
     pygame.display.update()
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            exit()
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_c:
-                keyC = True
-        elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_c:
-                keyC = False
-    if keyC:
-        return
+    while keyC:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_c:
+                    keyC = False
 
 pygame.init()
 
@@ -112,6 +107,8 @@ total_time = 60
 # 시작 시간
 start_ticks = pygame.time.get_ticks()
 
+game_start()
+
 running = True 
 while running:
     dt = clock.tick(60)
@@ -122,7 +119,7 @@ while running:
     timer = game_font.render(str(int(total_time - elapsed_time)), True, (255, 255, 255))
     get_point = game_font.render(str(int(score)), True, (255, 255, 255))
 
-    game_start()
+    
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
