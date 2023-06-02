@@ -163,6 +163,8 @@ while running:
         F_x_pos = random.randint(0, screen_width - F_width)
 
 
+    # 학점 위치 정의 (A+, B+, C+, D+, F마다 다르게 설정) 
+
     # 충돌 처리 (A+: 10점, B+: 7점, C+: 5점, D+: 3점, F: -5점)
     BOO_rect = BOO.get_rect()
     BOO_rect.left = BOO_x_pos
@@ -191,18 +193,23 @@ while running:
     if BOO_rect.colliderect(A_rect):
         score += 10
         A_y_pos = random.randint(-1000, 0)
+        A_x_pos = random.randint(0, screen_width - A_width)
     elif BOO_rect.colliderect(B_rect):
         score += 7
         B_y_pos = random.randint(-500, 0)
+        B_x_pos = random.randint(0, screen_width - B_width)
     elif BOO_rect.colliderect(C_rect):
         score += 5
         C_y_pos = random.randint(-250, 0)
+        C_x_pos = random.randint(0, screen_width - C_width)
     elif BOO_rect.colliderect(D_rect):
         score += 3
         D_y_pos = random.randint(-125, 0)
+        D_x_pos = random.randint(0, screen_width - D_width)
     elif BOO_rect.colliderect(F_rect):
         score -= 5
         F_y_pos = 0
+        F_x_pos = random.randint(0, screen_width - F_width)
 
     if (total_time-elapsed_time) >30: #시간이 30초 이상 남았을 때 1학기 배경화면 출력 
         screen.blit(background_1,(0,0))
