@@ -1,3 +1,4 @@
+
 import pygame
 import random
 
@@ -13,12 +14,18 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 # 화면 타이틀 설정
 pygame.display.set_caption("BOO GAME")
 
+GAME_START = 0
+GAME_PLAYING = 1
+GAME_OVER = 2
+game_state = GAME_START
+GameOver_screen = pygame.image.load("./../resource/images/game_over.png") #게임 오버 화면
+GameStart_screen = pygame.image.load("./../resource/images/game_start.png") #게임 시작 화면
 # FPS
 clock = pygame.time.Clock()
 
 background_1 = pygame.image.load("./../resource/images/BACK1.png") #1학기 배경
 background_2 = pygame.image.load("./../resource/images/BACK2.png") #2학기 배경
-GameOver = pygame.image.load("./../resource/images/game_over.png") #게임 오버  
+ 
 
 BOO = pygame.image.load("./../resource/images/BOO.png") # 기본 부
 BOO_pink = pygame.image.load("./../resource/images/BOO_pink.png") #핑크색 부
@@ -88,14 +95,15 @@ to_x, to_y = 0, 0
 game_font = pygame.font.Font(None, 40)
 
 # 총 시간
-total_time = 60
+total_time = 5
 
 # 시작 시간
 start_ticks = pygame.time.get_ticks()
+boo_speed = 0.4 # 부 이동 속도 설정
 
 running = True 
 while running:
-    dt = clock.tick(60)
+    dt = clock.tick(120)
 
     # 경과 시간 계산
     elapsed_time = (pygame.time.get_ticks() - start_ticks) / 1000
@@ -107,121 +115,148 @@ while running:
         if event.type == pygame.QUIT:
             running = False
             
-        # 키보드 입력 설정 
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                to_x -= BOO_speed
-            elif event.key == pygame.K_RIGHT:
-                to_x += BOO_speed
-                
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                to_x = 0
-                
-    # 부가 화면 밖으로 넘어가지 않도록 조치          
-    if BOO_x_pos < 0:
-        BOO_x_pos = 0
-    elif BOO_x_pos > screen_width-BOO_width:
-        BOO_x_pos =screen_width-BOO_width 
-    
-    BOO_x_pos += to_x * dt
+            if game_state == GAME_START:
+                if event.key == pygame.K_c:  # C 키를 눌렀을 때 게임 시작
+                    game_state = GAME_PLAYING
+            elif game_state == GAME_OVER:
+                if event.key == pygame.K_c:  # C 키를 눌렀을 때 게임 재시작
+                    score = 0
+                    game_state = GAME_PLAYING
+                    start_ticks = pygame.time.get_ticks()
+                    # 게임 상태와 점수 등 초기화
+        
+        if game_state == GAME_START:
+        # 게임 시작 화면 출력
+            screen.blit(GameStart_screen, (0, 0))
+            
+        elif game_state == GAME_OVER:
+            screen.blit(GameOver_screen, (0, 0))    
+        
+        elif game_state == GAME_PLAYING:
+        # 게임 플레이 중일 때의 로직
+        # ...
+        # 키보드 입력 설정 
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    to_x -= boo_speed
+                elif event.key == pygame.K_RIGHT:
+                    to_x += boo_speed
 
-    # 캐릭터 위치 정의 (좌, 우로만 움직이며 대쉬가 있음)
-    A_y_pos += A_speed * dt
-    if A_y_pos > screen_height:
-        A_y_pos = random.randint(-1000, 0)
-        A_x_pos = random.randint(0, screen_width - A_width)
+                    
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                    to_x = 0
+                    
+        # 부가 화면 밖으로 넘어가지 않도록 조치          
+            if BOO_x_pos < 0:
+                BOO_x_pos = 0
+            elif BOO_x_pos > screen_width-BOO_width:
+                BOO_x_pos =screen_width-BOO_width 
+        
+            BOO_x_pos += to_x * dt
 
-    B_y_pos += B_speed * dt
-    if B_y_pos > screen_height:
-        B_y_pos = random.randint(-500, 0)
-        B_x_pos = random.randint(0, screen_width - B_width)
-    
-    C_y_pos += C_speed * dt
-    if C_y_pos > screen_height:
-        C_y_pos = random.randint(-250, 0)
-        C_x_pos = random.randint(0, screen_width - C_width)
-    
-    D_y_pos += D_speed * dt
-    if D_y_pos > screen_height:
-        D_y_pos = random.randint(-125, 0)
-        D_x_pos = random.randint(0, screen_width - D_width)
+        # 캐릭터 위치 정의 (좌, 우로만 움직이며 대쉬가 있음)
+            A_y_pos += A_speed * dt
+            if A_y_pos > screen_height:
+                A_y_pos = random.randint(-1000, 0)
+                A_x_pos = random.randint(0, screen_width - A_width)
 
-    F_y_pos += F_speed * dt
-    if F_y_pos > screen_height:
-        F_y_pos = 0
-        F_x_pos = random.randint(0, screen_width - F_width)
+            B_y_pos += B_speed * dt
+            if B_y_pos > screen_height:
+                B_y_pos = random.randint(-500, 0)
+                B_x_pos = random.randint(0, screen_width - B_width)
+        
+            C_y_pos += C_speed * dt
+            if C_y_pos > screen_height:
+                C_y_pos = random.randint(-250, 0)
+                C_x_pos = random.randint(0, screen_width - C_width)
+        
+            D_y_pos += D_speed * dt
+            if D_y_pos > screen_height:
+                D_y_pos = random.randint(-125, 0)
+                D_x_pos = random.randint(0, screen_width - D_width)
+
+            F_y_pos += F_speed * dt
+            if F_y_pos > screen_height:
+                F_y_pos = 0
+                F_x_pos = random.randint(0, screen_width - F_width)
 
 
-    # 학점 위치 정의 (A+, B+, C+, D+, F마다 다르게 설정) 
+        # 학점 위치 정의 (A+, B+, C+, D+, F마다 다르게 설정) 
 
-    # 충돌 처리 (A+: 10점, B+: 7점, C+: 5점, D+: 3점, F: -5점)
-    BOO_rect = BOO.get_rect()
-    BOO_rect.left = BOO_x_pos
-    BOO_rect.top = BOO_y_pos
+        # 충돌 처리 (A+: 10점, B+: 7점, C+: 5점, D+: 3점, F: -5점)
+            BOO_rect = BOO.get_rect()
+            BOO_rect.left = BOO_x_pos
+            BOO_rect.top = BOO_y_pos
 
-    A_rect = A.get_rect()
-    A_rect.left = A_x_pos
-    A_rect.top = A_y_pos
+            A_rect = A.get_rect()
+            A_rect.left = A_x_pos
+            A_rect.top = A_y_pos
 
-    B_rect = B.get_rect()
-    B_rect.left = B_x_pos
-    B_rect.top = B_y_pos
+            B_rect = B.get_rect()
+            B_rect.left = B_x_pos
+            B_rect.top = B_y_pos
 
-    C_rect = C.get_rect()
-    C_rect.left = C_x_pos
-    C_rect.top = C_y_pos
+            C_rect = C.get_rect()
+            C_rect.left = C_x_pos
+            C_rect.top = C_y_pos
 
-    D_rect = D.get_rect()
-    D_rect.left = D_x_pos
-    D_rect.top = D_y_pos
+            D_rect = D.get_rect()
+            D_rect.left = D_x_pos
+            D_rect.top = D_y_pos
 
-    F_rect = F.get_rect()
-    F_rect.left = F_x_pos
-    F_rect.top = F_y_pos
+            F_rect = F.get_rect()
+            F_rect.left = F_x_pos
+            F_rect.top = F_y_pos
 
-    if BOO_rect.colliderect(A_rect):
-        score += 10
-        A_y_pos = random.randint(-1000, 0)
-    elif BOO_rect.colliderect(B_rect):
-        score += 7
-        B_y_pos = random.randint(-500, 0)
-    elif BOO_rect.colliderect(C_rect):
-        score += 5
-        C_y_pos = random.randint(-250, 0)
-    elif BOO_rect.colliderect(D_rect):
-        score += 3
-        D_y_pos = random.randint(-125, 0)
-    elif BOO_rect.colliderect(F_rect):
-        score -= 5
-        F_y_pos = 0
+            if BOO_rect.colliderect(A_rect):
+                score += 10
+                A_y_pos = random.randint(-1000, 0)
+            elif BOO_rect.colliderect(B_rect):
+                score += 7
+                B_y_pos = random.randint(-500, 0)
+            elif BOO_rect.colliderect(C_rect):
+                score += 5
+                C_y_pos = random.randint(-250, 0)
+            elif BOO_rect.colliderect(D_rect):
+                score += 3
+                D_y_pos = random.randint(-125, 0)
+            elif BOO_rect.colliderect(F_rect):
+                score -= 5
+                F_y_pos = 0
 
-    
-    
+        
+        
 
-    if (total_time-elapsed_time) >30: #시간이 30초 이상 남았을 때 1학기 배경화면 출력 
-        screen.blit(background_1,(0,0))
-        screen.blit(timer, (10, 10))
-        screen.blit(get_point, (screen_width-50, 10))
-    elif (total_time-elapsed_time) >0: #시간이 30초 이하 남았을 때 2학기 배경화면 출력 
-        screen.blit(background_2,(0,0))
-        screen.blit(timer, (10, 10))
-        screen.blit(get_point, (screen_width-50, 10))
-    else:
-        BOO_x_pos = 10000 #남은 시간이 0 일 때 부를 화면에 뜨지 않도록 처리 
-        A_x_pos, B_x_pos, C_x_pos, D_x_pos, F_x_pos = 10000, 10000, 10000, 10000, 10000
-        screen.blit(GameOver,(0,0)) #남은 시간이 0 일 때 게임오버 화면 출력 
-        screen.blit(get_point, (screen_width/2, screen_height/2))
+            if (total_time-elapsed_time) >30: #시간이 30초 이상 남았을 때 1학기 배경화면 출력 
+                screen.blit(background_1,(0,0))
+                screen.blit(timer, (10, 10))
+                screen.blit(get_point, (screen_width-50, 10))
+            elif (total_time-elapsed_time) >0: #시간이 30초 이하 남았을 때 2학기 배경화면 출력 
+                screen.blit(background_2,(0,0))
+                screen.blit(timer, (10, 10))
+                screen.blit(get_point, (screen_width-50, 10))
+            else:
+                BOO_x_pos = 10000 #남은 시간이 0 일 때 부를 화면에 뜨지 않도록 처리 
+                A_x_pos, B_x_pos, C_x_pos, D_x_pos, F_x_pos = 10000, 10000, 10000, 10000, 10000
+                screen.blit(get_point, (screen_width/2, screen_height/2))
+                game_state = GAME_OVER
 
-    screen.blit(BOO_brown, (BOO_x_pos,BOO_y_pos)) #부를 화면에 출력 
-    screen.blit(A, (A_x_pos, A_y_pos))
-    screen.blit(B, (B_x_pos, B_y_pos))
-    screen.blit(C, (C_x_pos, C_y_pos))
-    screen.blit(D, (D_x_pos, D_y_pos))
-    screen.blit(F, (F_x_pos, F_y_pos))
+            screen.blit(BOO_brown, (BOO_x_pos,BOO_y_pos)) #부를 화면에 출력 
+            screen.blit(A, (A_x_pos, A_y_pos))
+            screen.blit(B, (B_x_pos, B_y_pos))
+            screen.blit(C, (C_x_pos, C_y_pos))
+            screen.blit(D, (D_x_pos, D_y_pos))
+            screen.blit(F, (F_x_pos, F_y_pos))
+        
+        
 
     pygame.display.update()
-
+    
+        
 pygame.quit()
+    
+    
 
 # 원격 업로드 실험
