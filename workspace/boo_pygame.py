@@ -3,7 +3,7 @@ import random
 
 def game_start():
     keyC = True
-    GameStart_screen = pygame.image.load("./../resource/images/game_over.png")
+    GameStart_screen = pygame.image.load("./../resource/images/game_start.png")
     screen.blit(GameStart_screen,(0,0))
 
     pygame.display.update()
@@ -17,7 +17,6 @@ def game_start():
                     keyC = False
 
 pygame.init()
-
 
 # 화면 크기 설정
 screen_width = 1000 # 가로 크기
@@ -90,13 +89,8 @@ F_x_pos = random.randint(0, screen_width - F_width)
 F_y_pos = 0
 F_speed = 0.66
 
-
-
 # 이동 좌표 설정
 to_x, to_y = 0, 0
-
-# 이동 속도 설정 (캐릭터, A+, B+, C+, D+, F, 대쉬)
-
 
 # 폰트 정의
 game_font = pygame.font.Font(None, 40)
@@ -104,10 +98,10 @@ game_font = pygame.font.Font(None, 40)
 # 총 시간
 total_time = 60
 
+game_start()
+
 # 시작 시간
 start_ticks = pygame.time.get_ticks()
-
-game_start()
 
 running = True 
 while running:
@@ -118,8 +112,6 @@ while running:
 
     timer = game_font.render(str(int(total_time - elapsed_time)), True, (255, 255, 255))
     get_point = game_font.render(str(int(score)), True, (255, 255, 255))
-
-    
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -171,8 +163,6 @@ while running:
         F_x_pos = random.randint(0, screen_width - F_width)
 
 
-    # 학점 위치 정의 (A+, B+, C+, D+, F마다 다르게 설정) 
-
     # 충돌 처리 (A+: 10점, B+: 7점, C+: 5점, D+: 3점, F: -5점)
     BOO_rect = BOO.get_rect()
     BOO_rect.left = BOO_x_pos
@@ -213,9 +203,6 @@ while running:
     elif BOO_rect.colliderect(F_rect):
         score -= 5
         F_y_pos = 0
-
-    
-    
 
     if (total_time-elapsed_time) >30: #시간이 30초 이상 남았을 때 1학기 배경화면 출력 
         screen.blit(background_1,(0,0))
