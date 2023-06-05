@@ -3,7 +3,7 @@ import random
 
 def game_start():
     keyC = True
-    GameStart_screen = pygame.image.load("./../resource/images/game_start.png")
+    GameStart_screen = pygame.image.load("./../resource/images/START.png")
     screen.blit(GameStart_screen,(0,0))
 
     pygame.display.update()
