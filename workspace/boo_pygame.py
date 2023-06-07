@@ -16,6 +16,8 @@ def game_start():
                 if event.key == pygame.K_c:
                     keyC = False
 
+#테스트
+
 pygame.init()
 
 # 화면 크기 설정
