@@ -3,7 +3,7 @@ import random
 
 def game_start():
     keyC = True
-    GameStart_screen = pygame.image.load("./../resource/images/game_start.png")
+    GameStart_screen = pygame.image.load("./../resource/images/START.png")
     screen.blit(GameStart_screen,(0,0))
 
     pygame.display.update()
@@ -15,6 +15,8 @@ def game_start():
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_c:
                     keyC = False
+
+#테스트
 
 pygame.init()
 
