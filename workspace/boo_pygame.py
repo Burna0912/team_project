@@ -51,7 +51,7 @@ BOO_speed = 0.25
 # 학점(A+, B+, C+, D+, F) 설정
 score = 0
 
-A = pygame.image.load("./../resource/images/scores/autumn_A.png")
+A = pygame.image.load("./../resource/images/scores/A+.png")
 A_size = A.get_rect().size # 이미지의 크기를 구해옴
 A_width = A_size[0] # 캐릭터의 가로 크기
 A_height = A_size[1] # 캐릭터의 세로 크기
@@ -59,7 +59,7 @@ A_x_pos = random.randint(0, screen_width - A_width)
 A_y_pos = random.randint(-1000, 0)
 A_speed = 0.25
 
-B = pygame.image.load("./../resource/images/scores/spring_A.png")
+B = pygame.image.load("./../resource/images/scores/B+.png")
 B_size = B.get_rect().size # 이미지의 크기를 구해옴
 B_width = B_size[0] # 캐릭터의 가로 크기
 B_height = B_size[1] # 캐릭터의 세로 크기
@@ -67,7 +67,7 @@ B_x_pos = random.randint(0, screen_width - B_width)
 B_y_pos = random.randint(-500, 0)
 B_speed = 0.32
 
-C = pygame.image.load("./../resource/images/scores/spring_B.png")
+C = pygame.image.load("./../resource/images/scores/C+.png")
 C_size = C.get_rect().size # 이미지의 크기를 구해옴
 C_width = C_size[0] # 캐릭터의 가로 크기
 C_height = C_size[1] # 캐릭터의 세로 크기
@@ -75,7 +75,7 @@ C_x_pos = random.randint(0, screen_width - C_width)
 C_y_pos = random.randint(-250, 0)
 C_speed = 0.37
 
-D = pygame.image.load("./../resource/images/scores/summer_A.png")
+D = pygame.image.load("./../resource/images/scores/D+.png")
 D_size = D.get_rect().size # 이미지의 크기를 구해옴
 D_width = D_size[0] # 캐릭터의 가로 크기
 D_height = D_size[1] # 캐릭터의 세로 크기
@@ -83,7 +83,7 @@ D_x_pos = random.randint(0, screen_width - D_width)
 D_y_pos = random.randint(-120, 0)
 D_speed = 0.43
 
-F = pygame.image.load("./../resource/images/scores/winter_A.png")
+F = pygame.image.load("./../resource/images/scores/F.png")
 F_size = F.get_rect().size # 이미지의 크기를 구해옴
 F_width = F_size[0] # 캐릭터의 가로 크기
 F_height = F_size[1] # 캐릭터의 세로 크기
