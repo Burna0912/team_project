@@ -325,7 +325,7 @@ while running:
         BOO_x_pos = 10000 #남은 시간이 0 일 때 부를 화면에 뜨지 않도록 처리 
         A_x_pos, B_x_pos, C_x_pos, D_x_pos, F_x_pos, F1_x_pos, F2_x_pos, F3_x_pos, F4_x_pos= 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000
         screen.blit(GameOver,(0,0)) #남은 시간이 0 일 때 게임오버 화면 출력 
-        screen.blit(get_point, (screen_width/2, screen_height/2))
+        screen.blit(get_point, (screen_width/2, screen_height/2-20))
 
 
     if to_x > 0:    #부를 화면에 출력
