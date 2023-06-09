@@ -35,7 +35,7 @@ background_1 = pygame.image.load("./../resource/images/BACK1.png") #1학기 배�
 background_2 = pygame.image.load("./../resource/images/BACK2.png") #2학기 배경
 GameOver = pygame.image.load("./../resource/images/OVER.png") #게임 오버  
 
-BOO = pygame.image.load("./../resource/images/BOO.png") # 기본 부
+BOO = pygame.image.load("./../resource/images/BOO_brown.png") # 기본 부
 BOO_right = pygame.image.load("./../resource/images/BOO_brown_right.png")
 #BOO_brown = pygame.image.load("./../resource/images/BOO_brown.png") #갈색 부
 
