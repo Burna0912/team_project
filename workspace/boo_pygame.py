@@ -110,6 +110,22 @@ F2_y_pos = random.randint(-40, 0)
 F2_speed = random.uniform(0.75, 0.89)
 #F2_speed = 0.8
 
+F3 = pygame.image.load("./../resource/images/scores/F.png")
+F3_size = F3.get_rect().size # 이미지의 크기를 구해옴
+F3_width = F3_size[0] # 캐릭터의 가로 크기
+F3_height = F3_size[1] # 캐릭터의 세로 크기
+F3_x_pos = random.randint(0, screen_width - F3_width)
+F3_y_pos = random.randint(-50, 0)
+F3_speed = random.uniform(0.48, 0.89)
+
+F4 = pygame.image.load("./../resource/images/scores/F.png")
+F4_size = F4.get_rect().size # 이미지의 크기를 구해옴
+F4_width = F4_size[0] # 캐릭터의 가로 크기
+F4_height = F4_size[1] # 캐릭터의 세로 크기
+F4_x_pos = random.randint(0, screen_width - F4_width)
+F4_y_pos = random.randint(-50, 0)
+F4_speed = random.uniform(0.48, 0.89)
+
 # 이동 좌표 설정
 to_x, to_y = 0, 0
 status = 0
@@ -198,6 +214,18 @@ while running:
         F2_x_pos = random.randint(0, screen_width - F2_width)
         F2_speed = random.uniform(0.75, 0.89)
 
+    F3_y_pos += F3_speed * dt
+    if F3_y_pos > screen_height:
+        F3_y_pos = random.randint(-50, 0)
+        F3_x_pos = random.randint(0, screen_width - F3_width)
+        F3_speed = random.uniform(0.48, 0.89)
+
+    F4_y_pos += F4_speed * dt
+    if F4_y_pos > screen_height:
+        F4_y_pos = random.randint(-50, 0)
+        F4_x_pos = random.randint(0, screen_width - F4_width)
+        F4_speed = random.uniform(0.48, 0.89)
+
 
     # 학점 위치 정의 (A+, B+, C+, D+, F마다 다르게 설정) 
 
@@ -234,6 +262,14 @@ while running:
     F2_rect.left = F2_x_pos
     F2_rect.top = F2_y_pos
 
+    F3_rect = F3.get_rect()
+    F3_rect.left = F3_x_pos
+    F3_rect.top = F3_y_pos
+
+    F4_rect = F4.get_rect()
+    F4_rect.left = F4_x_pos
+    F4_rect.top = F4_y_pos
+
     if BOO_rect.colliderect(A_rect):
         score += 10
         A_y_pos = random.randint(-1000, 0)
@@ -266,6 +302,16 @@ while running:
         F2_y_pos = random.randint(-40, 0)
         F2_x_pos = random.randint(0, screen_width - F2_width)
         F2_speed = random.uniform(0.75, 0.89)
+    elif BOO_rect.colliderect(F3_rect):
+        score -= 5
+        F3_y_pos = random.randint(-50, 0)
+        F3_x_pos = random.randint(0, screen_width - F3_width)
+        F3_speed = random.uniform(0.48, 0.89)
+    elif BOO_rect.colliderect(F4_rect):
+        score -= 5
+        F4_y_pos = random.randint(-50, 0)
+        F4_x_pos = random.randint(0, screen_width - F4_width)
+        F4_speed = random.uniform(0.48, 0.89)
 
     if (total_time-elapsed_time) >30: #시간이 30초 이상 남았을 때 1학기 배경화면 출력 
         screen.blit(background_1,(0,0))
@@ -277,7 +323,7 @@ while running:
         screen.blit(get_point, (screen_width-50, 10))
     else:
         BOO_x_pos = 10000 #남은 시간이 0 일 때 부를 화면에 뜨지 않도록 처리 
-        A_x_pos, B_x_pos, C_x_pos, D_x_pos, F_x_pos, F1_x_pos, F2_x_pos= 10000, 10000, 10000, 10000, 10000, 10000, 10000
+        A_x_pos, B_x_pos, C_x_pos, D_x_pos, F_x_pos, F1_x_pos, F2_x_pos, F3_x_pos, F4_x_pos= 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000
         screen.blit(GameOver,(0,0)) #남은 시간이 0 일 때 게임오버 화면 출력 
         screen.blit(get_point, (screen_width/2, screen_height/2))
 
@@ -297,6 +343,8 @@ while running:
     screen.blit(F, (F_x_pos, F_y_pos))
     screen.blit(F1, (F1_x_pos, F1_y_pos))
     screen.blit(F2, (F2_x_pos, F2_y_pos))
+    screen.blit(F3, (F3_x_pos, F3_y_pos))
+    screen.blit(F4, (F4_x_pos, F4_y_pos))
 
     pygame.display.update()
 
